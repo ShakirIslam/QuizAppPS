@@ -30,7 +30,11 @@
         android:text="button"
         android:textAllCaps="true"
         android:textSize="18sp"
-        tools:text="agile scrum" />
+        />
+
+
+
+
 
 
     <Button
@@ -46,9 +50,7 @@
         android:background="@drawable/rounded_button"
         android:text="button"
         android:textAllCaps="true"
-        android:textSize="18sp"
-        tools:text="lean startup" />
-
+        android:textSize="18sp" />
     <Button
         android:id="@+id/button_3"
         android:layout_width="176dp"
@@ -62,8 +64,7 @@
         android:background="@drawable/rounded_button"
         android:text="button"
         android:textAllCaps="true"
-        android:textSize="18sp"
-        tools:text="design thinking" />
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/button_4"
@@ -78,27 +79,27 @@
         android:background="@drawable/rounded_button"
         android:text="button"
         android:textAllCaps="true"
-        android:textSize="18sp"
-        tools:text="all topics" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/text_choose"
         android:layout_width="match_parent"
         android:layout_height="60sp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="169dp"
+        android:layout_marginTop="92dp"
         android:background="@color/boxColor"
+        android:gravity="center"
+        android:letterSpacing="0.5"
         android:text="TextView"
         android:textAlignment="center"
-        android:letterSpacing="0.5"
-        android:textSize="25sp"
         android:textColor="@android:color/black"
-        android:gravity="center"/>
+        android:textSize="25sp" />
 
     <ImageView
         android:id="@+id/imageViewHome"
-        android:layout_width="31dp"
-        android:layout_height="32dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignLeft="@id/imageViewHome"
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/home" />
