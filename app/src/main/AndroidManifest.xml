@@ -19,7 +19,6 @@
         <activity android:name=".CategorySelectionActivity" />
         <activity android:name=".QuizActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".QuizResults" />
         <activity android:name=".ResultsActivity"></activity>
     </application>
 

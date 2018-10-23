@@ -25,3 +25,11 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+//To provide pie chart functionality
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}

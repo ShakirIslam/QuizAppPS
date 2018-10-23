@@ -9,6 +9,7 @@ import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,9 +23,10 @@ import org.w3c.dom.Text;
 
 import java.util.Collections;
 import java.util.List;
+import com.student.shakirislam.quizapp.ResultsActivity.*;
 
 public class QuizActivity extends AppCompatActivity {
-
+    private static final String TAG = QuizActivity.class.getSimpleName();
     private TextView textQuestion;
     private TextView textScore;
     private TextView textQuestionCount;
@@ -101,6 +103,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        //Feedback button handler
         buttonFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,8 +153,21 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void quizFinished() {
-        //This will started a new activity showing results, need to pass intent and results. 
-        finish();
+        //Calculating correct and incorrect
+        int correct = score;
+        int wrong = questionCountTotal - score;
+        double percenD = ((double) score/ questionCountTotal) * 100 ;
+        String percentageString = Double.toString(percenD);
+
+        Log.d(TAG, "quizFinished: Correct Questions: " + score + " Incorrect Questions: " + wrong);
+        Log.d(TAG, "quizFinished: Percentage Double value: " + percenD + " & String value is " + percentageString);
+        //Sending them to the results class
+        Intent intent = new Intent(QuizActivity.this,ResultsActivity.class);
+
+        intent.putExtra("Correct", correct);
+        intent.putExtra("Wrong",wrong );
+        intent.putExtra("Percentage",percentageString);
+        startActivity(intent);
     }
 
     public void checkAnswer(){
@@ -239,8 +255,5 @@ public class QuizActivity extends AppCompatActivity {
         feedbackDialog.show();
     }
 
-    private void closeFeedback(){
-        //Closing the dialog box
-    }
 
 }
