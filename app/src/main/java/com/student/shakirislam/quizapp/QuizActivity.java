@@ -3,10 +3,16 @@ package com.student.shakirislam.quizapp;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.media.Image;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,6 +35,7 @@ public class QuizActivity extends AppCompatActivity {
     private RadioButton rb3;
     private RadioButton rb4;
     private Button buttonSubmit;
+    private Button buttonFeedback;
 
     private List<Question> listQuestion;
 
@@ -56,6 +63,9 @@ public class QuizActivity extends AppCompatActivity {
         rb3 = (RadioButton) findViewById(R.id.radioButton3);
         rb4 = (RadioButton) findViewById(R.id.radioButton4);
         buttonSubmit = (Button) findViewById(R.id.button_submit);
+        buttonFeedback =(Button) findViewById(R.id.button_feedback);
+
+
 
         rbcolour = rb1.getTextColors();
 
@@ -80,6 +90,8 @@ public class QuizActivity extends AppCompatActivity {
                     if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
                         answered = true;
                         checkAnswer();
+                        //Feedback button is made visible
+                        buttonFeedback.setVisibility(View.VISIBLE);
                     }else{
                         Toast.makeText(QuizActivity.this, "Select an option please", Toast.LENGTH_SHORT).show();
                     }
@@ -89,16 +101,26 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        buttonFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFeedback();
+            }
+        });
+
     }
 
+
     private void displayNextQuestion() {
-        //Setting the colour of the radio button to default
+        //Setting the text colour of the radio button to default
         rb1.setTextColor(rbcolour);
         rb2.setTextColor(rbcolour);
         rb3.setTextColor(rbcolour);
         rb4.setTextColor(rbcolour);
 
-        //Clearing the selection every round
+        //Feedback button is cleared
+        buttonFeedback.setVisibility(View.GONE);
+        //Clearing the selection every round and reseting text style
         rbGroup.clearCheck();
 
         if(questionCount < questionCountTotal){
@@ -109,11 +131,15 @@ public class QuizActivity extends AppCompatActivity {
             rb2.setText(currentQuestion.getOpt2());
             rb3.setText(currentQuestion.getOpt3());
             rb4.setText(currentQuestion.getOpt4());
+            rb1.setPaintFlags(0);
+            rb2.setPaintFlags(0);
+            rb3.setPaintFlags(0);
+            rb4.setPaintFlags(0);
 
             //this allows the questions to start at '1'
             questionCount++;
             textQuestionCount.setText("Current Question " + questionCount + " / " + questionCountTotal);
-            //Used to later check if radio buttons have been selected
+            //Reseting answer status
             answered = false;
             buttonSubmit.setText("Submit");
 
@@ -146,28 +172,75 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void highlightSolution() {
-        //setting all of them to red and then set correct to green
+        //setting all of them to red and then correct to underlined below
         rb1.setTextColor(Color.RED);
         rb2.setTextColor(Color.RED);
         rb3.setTextColor(Color.RED);
         rb4.setTextColor(Color.RED);
 
+        //Underlines the correct answer
         switch (currentQuestion.getAnswerNum()){
-            case 1: rb1.setTextColor(Color.GREEN);break;
-            case 2: rb2.setTextColor(Color.GREEN);break;
-            case 3: rb3.setTextColor(Color.GREEN);break;
-            case 4: rb4.setTextColor(Color.GREEN);break;
+            case 1: rb1.setTextColor(Color.BLACK); rb1.setPaintFlags(rb1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);   break;
+            case 2: rb2.setTextColor(Color.BLACK); rb2.setPaintFlags(rb2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);break;
+            case 3: rb3.setTextColor(Color.BLACK); rb3.setPaintFlags(rb3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);break;
+            case 4: rb4.setTextColor(Color.BLACK); rb4.setPaintFlags(rb4.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);break;
 
         }
-
+        //Quiz continues
         if(questionCount < questionCountTotal){
             buttonSubmit.setText("Next Question");
         }
-
+        //Quiz ends, results page is shown
         if(questionCount == questionCountTotal){
             buttonSubmit.setText("View Results");
         }
 
 
     }
+
+    private void showFeedback() {
+       //Creating dialog box. .
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(QuizActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.dialog_feedback, null);
+
+       //Creating Text and Image Variables
+        TextView textFeedbackContent = (TextView) mView.findViewById(R.id.text_feedbackContent);
+        ImageView wikiSymbol = (ImageView) mView.findViewById(R.id.image_wiki);
+        ImageView youtubeSymbol = (ImageView) mView.findViewById(R.id.image_youtube);
+        TextView textFeedbackTitle = (TextView) mView.findViewById(R.id.text_feedbackTitle);
+
+       //Applying content to variables
+        textFeedbackContent.setText(currentQuestion.getFeedback());
+        textFeedbackTitle.setPaintFlags(textFeedbackTitle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        Typeface HelveticaNeue =Typeface.createFromAsset(getAssets(),"fonts/HelveticaNeue.ttf");
+        Typeface tahoma =Typeface.createFromAsset(getAssets(),"fonts/tahoma.ttf");
+        textFeedbackTitle.setTypeface(HelveticaNeue);
+
+
+
+        //button handlers
+        wikiSymbol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Take to the Wiki Page.
+            }
+        });
+
+        youtubeSymbol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Take to the Youtube Page.
+            }
+        });
+
+        mBuilder.setView(mView);
+        AlertDialog feedbackDialog = mBuilder.create();
+        feedbackDialog.show();
+    }
+
+    private void closeFeedback(){
+        //Closing the dialog box
+    }
+
 }
