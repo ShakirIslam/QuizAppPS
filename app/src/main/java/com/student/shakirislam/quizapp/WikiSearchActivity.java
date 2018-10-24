@@ -1,7 +1,10 @@
 package com.student.shakirislam.quizapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -26,6 +29,28 @@ public class WikiSearchActivity extends AppCompatActivity {
         button_return = (Button) findViewById(R.id.button_back);
         button_detail = (Button) findViewById(R.id.button_details);
         text_wiki_sum = (TextView) findViewById(R.id.text_wiki_summary);
+
+
+        button_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Return back to quiz
+                onBackPressed();
+            }
+        });
+
+        button_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent to view outside link.
+
+                String wikiurl = "https://en.wikipedia.org/wiki/" + wiki_link;
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(wikiurl));
+                startActivity(intent);
+            }
+        });
 
     }
 
