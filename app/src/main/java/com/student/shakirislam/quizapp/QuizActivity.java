@@ -38,7 +38,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textScore;
     private TextView textQuestionCount;
     private TextView textCounter;
-    private static final long COUNTDOWN_MILLIS = 10000;
+    private static final long COUNTDOWN_MILLIS = 30000;
     private long timeLeftmillis;
     private CountDownTimer countDownTimer;
     private RadioGroup rbGroup;

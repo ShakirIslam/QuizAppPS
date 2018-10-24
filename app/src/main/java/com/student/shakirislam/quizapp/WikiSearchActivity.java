@@ -69,4 +69,6 @@ public class WikiSearchActivity extends AppCompatActivity {
     public static void setWiki_link(String wiki_link) {
         WikiSearchActivity.wiki_link = wiki_link;
     }
+
+
 }
