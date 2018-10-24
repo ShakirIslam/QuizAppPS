@@ -24,7 +24,8 @@ public class QuizDBVariableContract {
         public static final String COLUMN_ANSWER_NUMBER = "answer_number";
         public static final String COLUMN_FEEDBACK = "feedback";
         public static final String COLUMN_CATEGORY = "category";
-        public static final String COLUMN_WIKI = "wiki";
+        public static final String COLUMN_WIKI_INTRO = "wiki_intro";
+        public static final String COLUMN_WIKI_LINK = "wiki_link";
         public static final String COLUMN_YOUTUBE = "youtube";
 
         //Need this specific method, because certain android classes require with the naming convention "_id"

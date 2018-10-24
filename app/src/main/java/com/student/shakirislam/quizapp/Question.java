@@ -10,14 +10,15 @@ public class Question {
     private int answerNum;
     private String feedback;
     private String category;
-    private String wiki;
+    private String wiki_intro;
+    private String wiki_link;
     private String youtube;
 
     public Question(){
         //When querying from the db, create an empty question object and use setters to set values
     }
 
-    public Question(String question, String opt1, String opt2, String opt3, String opt4, int answerNum, String feedback, String category, String wiki, String youtube) {
+    public Question(String question, String opt1, String opt2, String opt3, String opt4, int answerNum, String feedback, String category, String wiki_intro, String wiki_link, String youtube) {
         this.question = question;
         this.opt1 = opt1;
         this.opt2 = opt2;
@@ -26,8 +27,25 @@ public class Question {
         this.answerNum = answerNum;
         this.feedback = feedback;
         this.category = category;
-        this.wiki = wiki;
+        this.wiki_intro = wiki_intro;
+        this.wiki_link = wiki_link;
         this.youtube = youtube;
+    }
+
+    public String getWiki_intro() {
+        return wiki_intro;
+    }
+
+    public void setWiki_intro(String wiki_intro) {
+        this.wiki_intro = wiki_intro;
+    }
+
+    public String getWiki_link() {
+        return wiki_link;
+    }
+
+    public void setWiki_link(String wiki_link) {
+        this.wiki_link = wiki_link;
     }
 
     public String getQuestion() {
@@ -92,14 +110,6 @@ public class Question {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getWiki() {
-        return wiki;
-    }
-
-    public void setWiki(String wiki) {
-        this.wiki = wiki;
     }
 
     public String getYoutube() {

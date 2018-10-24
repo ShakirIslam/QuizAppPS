@@ -52,6 +52,7 @@ public class QuizActivity extends AppCompatActivity {
     private boolean answered;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,11 +85,11 @@ public class QuizActivity extends AppCompatActivity {
 
         Collections.shuffle(listQuestion);
 
-        //Question number limiter for all topics section
+        //Question number limiter for 'all topics' section
         if(categoryNumber == 4) {
             Log.d(TAG, "Begun question number changer");
             int size = listQuestion.size();
-            listQuestion.subList(4,size).clear();
+            listQuestion.subList(10,size).clear();
 
             Log.d(TAG, "onCreate: Size of list Quesiton after limitation " + listQuestion.size());
         }
