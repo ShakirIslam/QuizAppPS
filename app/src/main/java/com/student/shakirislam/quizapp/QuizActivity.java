@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import com.student.shakirislam.quizapp.ResultsActivity.*;
@@ -40,6 +41,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button buttonFeedback;
 
     private List<Question> listQuestion;
+    private List<Question> holder;
 
     private ColorStateList rbcolour;
     private int questionCount;
@@ -79,9 +81,19 @@ public class QuizActivity extends AppCompatActivity {
         int categoryNumber = getIntent().getExtras().getInt("Type");
         listQuestion = dbHelper.getCategoryQuestions(categoryNumber);
 
-        questionCountTotal = listQuestion.size();
+
         Collections.shuffle(listQuestion);
 
+        //Question number limiter for all topics section
+        if(categoryNumber == 4) {
+            Log.d(TAG, "Begun question number changer");
+            int size = listQuestion.size();
+            listQuestion.subList(4,size).clear();
+
+            Log.d(TAG, "onCreate: Size of list Quesiton after limitation " + listQuestion.size());
+        }
+
+        questionCountTotal = listQuestion.size();
         displayNextQuestion();
 
 
