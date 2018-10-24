@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.student.shakirislam.quizapp">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +21,8 @@
         <activity android:name=".CategorySelectionActivity" />
         <activity android:name=".QuizActivity" />
         <activity android:name=".ResultsActivity" />
-        <activity android:name=".YoutubePlayerCustomActivity"></activity>
+        <activity android:name=".YoutubePlayerCustomActivity" />
+        <activity android:name=".WikiSearchActivity"></activity>
     </application>
 
 </manifest>

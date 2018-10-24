@@ -346,6 +346,11 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Take to the Wiki Page.
+                WikiSearchActivity.setWiki_intro(currentQuestion.getWiki_intro());
+                WikiSearchActivity.setWiki_link(currentQuestion.getWiki_link());
+
+                Intent intent = new Intent(QuizActivity.this,WikiSearchActivity.class);
+                startActivity(intent);
             }
         });
 
