@@ -39,17 +39,16 @@
 
     <TextView
         android:id="@+id/text_counter"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/text_question_count"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="-14dp"
-        android:text="00:30"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="22dp"
+        android:text="30"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        android:textSize="40sp" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -96,15 +95,19 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="123dp"
+        android:layout_height="123dp"
         android:layout_above="@+id/text_counter"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="-102dp"
+        android:progress="80"
+        android:progressDrawable="@drawable/circleprogress" />
 
     <TextView
         android:id="@+id/textQuestion"
@@ -113,9 +116,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="19dp"
+        android:layout_marginStart="12dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="113dp"
+        android:layout_marginTop="125dp"
+        android:padding="7dp"
         android:text="Question Placeholder"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
@@ -144,8 +148,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="244dp"
-        android:layout_height="58dp"
+        android:layout_width="224dp"
+        android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
 

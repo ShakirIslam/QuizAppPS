@@ -42,11 +42,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="146dp"
-        android:layout_marginLeft="146dp"
+        android:layout_marginStart="203dp"
+        android:layout_marginLeft="203dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginRight="148dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginRight="91dp"
         app:srcCompat="@drawable/youtube_square" />
 
     <ImageView
@@ -56,11 +56,11 @@
         android:layout_below="@+id/text_feedbackContent"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginLeft="118dp"
+        android:layout_marginTop="37dp"
         android:cropToPadding="true"
-        app:srcCompat="@drawable/wikis_square"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        app:srcCompat="@drawable/wikis_square" />
 
 </RelativeLayout>

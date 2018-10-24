@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#bccad2</color>
     <color name="colorPrimaryDark">#0880db</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#0B05BF</color>
     <color name="colorBackground">#B1D9E7</color>
     <color name="boxColor">#E8EAF6</color>
     <color name="gradient_start">#635F5F</color>

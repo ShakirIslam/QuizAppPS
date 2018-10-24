@@ -6,14 +6,18 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.media.Image;
+import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -24,6 +28,8 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+
 import com.student.shakirislam.quizapp.ResultsActivity.*;
 
 public class QuizActivity extends AppCompatActivity {
@@ -32,6 +38,9 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textScore;
     private TextView textQuestionCount;
     private TextView textCounter;
+    private static final long COUNTDOWN_MILLIS = 10000;
+    private long timeLeftmillis;
+    private CountDownTimer countDownTimer;
     private RadioGroup rbGroup;
     private RadioButton rb1;
     private RadioButton rb2;
@@ -39,11 +48,12 @@ public class QuizActivity extends AppCompatActivity {
     private RadioButton rb4;
     private Button buttonSubmit;
     private Button buttonFeedback;
+    private ProgressBar timerProgressBar;
 
     private List<Question> listQuestion;
-    private List<Question> holder;
 
     private ColorStateList rbcolour;
+    private ColorStateList cdcolour;
     private int questionCount;
     private int questionCountTotal;
     private Question currentQuestion;
@@ -69,10 +79,12 @@ public class QuizActivity extends AppCompatActivity {
         rb4 = (RadioButton) findViewById(R.id.radioButton4);
         buttonSubmit = (Button) findViewById(R.id.button_submit);
         buttonFeedback =(Button) findViewById(R.id.button_feedback);
+        timerProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 
 
         rbcolour = rb1.getTextColors();
+        cdcolour = textCounter.getTextColors();
 
 
         QuizDBHelper dbHelper = new QuizDBHelper(this);
@@ -101,7 +113,7 @@ public class QuizActivity extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(answered == false){
+                if(answered == false && timeLeftmillis > 0){
                     if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
                         answered = true;
                         checkAnswer();
@@ -110,6 +122,11 @@ public class QuizActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(QuizActivity.this, "Select an option please", Toast.LENGTH_SHORT).show();
                     }
+                }else if(answered == false && timeLeftmillis == 0){
+                    //buttonFeedback.setVisibility(View.VISIBLE);
+                    //highlightSolution();
+                    displayNextQuestion();
+
                 }else{
                     displayNextQuestion();
                 }
@@ -128,6 +145,9 @@ public class QuizActivity extends AppCompatActivity {
 
 
     private void displayNextQuestion() {
+
+
+
         //Setting the text colour of the radio button to default
         rb1.setTextColor(rbcolour);
         rb2.setTextColor(rbcolour);
@@ -163,14 +183,65 @@ public class QuizActivity extends AppCompatActivity {
             answered = false;
             buttonSubmit.setText("Submit");
 
+            //Reseting Timer
+            timerProgressBar.setProgress(100);
+            timeLeftmillis = COUNTDOWN_MILLIS;
 
+            startCountDown();
         }else{
             quizFinished();
         }
     }
 
+    private void startCountDown() {
+        //Controlling the count-down timer
+        countDownTimer = new CountDownTimer(timeLeftmillis, 1000) {
+            @Override
+            public void onTick(long milliUntilFin) {
+            //This method will be called every 1000 milli secs
+                timeLeftmillis = milliUntilFin;
+                updateCounterText();
+
+                //Controlling Time Progress Bar
+                Log.d(TAG, "onTick: timeLeftmillis = " + timeLeftmillis);
+                double dTimeProgressPercentage = ((double)timeLeftmillis/COUNTDOWN_MILLIS) * 100;
+                Log.d(TAG, "onTick: Float Progress Value: " + dTimeProgressPercentage);
+                int iTimeProgressPercentage = (int)dTimeProgressPercentage;
+                timerProgressBar.setProgress(iTimeProgressPercentage);
+
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftmillis = 0;
+                updateCounterText();
+                checkAnswer();
+                timerProgressBar.setProgress(0);
+
+
+
+            }
+        }.start();
+    }
+
+    private void updateCounterText() {
+        //This controls the text shown
+        int seconds = (int) (timeLeftmillis /1000) % 60;
+
+        String timeFormat = String.format(Locale.getDefault(), "%02d", seconds);
+
+        textCounter.setText(timeFormat);
+        //Controls timer colour
+        if (timeLeftmillis < 10000){
+            textCounter.setTextColor(Color.RED);
+
+        }else{
+            textCounter.setTextColor(cdcolour);
+        }
+    }
+
     private void quizFinished() {
-        //Calculating correct and incorrect
+        //Calculates final score result and handles finishing quiz
         int correct = score;
         int wrong = questionCountTotal - score;
         double percenD = ((double) score/ questionCountTotal) * 100 ;
@@ -188,19 +259,33 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void checkAnswer(){
+        //Checks whether answer was correct
         //Gets the radiobutton that was selected from the group rather than individually
-
         RadioButton selectedRb = findViewById(rbGroup.getCheckedRadioButtonId());
+        Log.d(TAG, "checkAnswer: Value of selected radio button " + selectedRb);
+        //Stops timer
+        countDownTimer.cancel();
 
-        int answerNum = rbGroup.indexOfChild(selectedRb) + 1;
-        //+1 is added because index notation
+        if(selectedRb != null) {
+            //+1 is added because index notation
+            int answerNum = rbGroup.indexOfChild(selectedRb) + 1;
 
-        if(answerNum == currentQuestion.getAnswerNum()){
-            score ++;
-            textScore.setText("Score:" + score);
+            //Compares button to correct answer from db value
+            if (answerNum == currentQuestion.getAnswerNum()) {
+                Log.d(TAG, "checkAnswer: Score was increased by 1");
+                score++;
+                textScore.setText("Score: " + score);
 
+            }
+            buttonFeedback.setVisibility(View.VISIBLE);
+        }else{
+            //No answer is selected and time has ran out
+            Log.d(TAG, "checkAnswer: Feedback button is made visible");
+            buttonFeedback.setVisibility(View.VISIBLE);
         }
 
+
+        //Highlights incorrect and correct answer
         highlightSolution();
     }
 
@@ -250,6 +335,10 @@ public class QuizActivity extends AppCompatActivity {
         Typeface tahoma =Typeface.createFromAsset(getAssets(),"fonts/tahoma.ttf");
         textFeedbackTitle.setTypeface(HelveticaNeue);
 
+        //Fade in Animation
+        Animation fadeInAnimation = AnimationUtils.loadAnimation(this,R.anim.fadein);
+        mView.setAnimation(fadeInAnimation);
+
 
 
         //button handlers
@@ -280,5 +369,11 @@ public class QuizActivity extends AppCompatActivity {
         feedbackDialog.show();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(countDownTimer != null){
+            countDownTimer.cancel();
+        }
+    }
 }
