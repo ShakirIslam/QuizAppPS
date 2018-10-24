@@ -1,7 +1,7 @@
 package com.student.shakirislam.quizapp;
 
 public class Question {
-
+    private static final String TAG = "Question";
     private String question;
     private String opt1;
     private String opt2;

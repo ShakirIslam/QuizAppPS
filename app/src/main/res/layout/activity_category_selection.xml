@@ -95,13 +95,5 @@
         android:textColor="@android:color/black"
         android:gravity="center"/>
 
-    <ImageView
-        android:id="@+id/imageViewHome"
-        android:layout_width="31dp"
-        android:layout_height="32dp"
-        android:layout_alignLeft="@id/imageViewHome"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/home" />
-
 
 </RelativeLayout>

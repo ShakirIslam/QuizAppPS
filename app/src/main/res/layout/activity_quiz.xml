@@ -12,11 +12,14 @@
         android:id="@+id/text_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/text_feedbackTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
         android:layout_marginTop="14dp"
         android:text="Score: 0"
-
         android:textColor="@android:color/black"
         android:textSize="20sp" />
 
@@ -54,8 +57,7 @@
 
         android:layout_height="wrap_content"
         android:layout_below="@+id/textQuestion"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
+
         android:layout_marginTop="20dp"
         android:padding="20dp">
 
@@ -105,26 +107,15 @@
         android:layout_marginBottom="0dp" />
 
     <TextView
-        android:id="@+id/text_feedbackTitle"
+        android:id="@+id/textQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginBottom="18dp"
-        android:text="TextView"
-        android:textSize="17sp"
-        android:textColor="@android:color/black"/>
-
-    <TextView
-        android:id="@+id/textQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginTop="113dp"
-        android:padding="15dp"
         android:text="Question Placeholder"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
@@ -150,6 +141,16 @@
         android:background="@drawable/rounded_button"
         android:text="feedback"
         android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="244dp"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/logowhite" />
 
 
 </RelativeLayout>

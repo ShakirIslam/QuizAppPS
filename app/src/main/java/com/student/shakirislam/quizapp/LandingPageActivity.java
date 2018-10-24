@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class LandingPageActivity extends AppCompatActivity {
-
+    private static final String TAG = "LandingPageActivity";
     private TextView title,subtitle;
     private Button startButton;
 

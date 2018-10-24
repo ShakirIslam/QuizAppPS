@@ -6,7 +6,7 @@ public class QuizDBVariableContract {
 
 
     public static class QuizTable implements BaseColumns {
-
+        private static final String TAG = "QuizTable";
         private QuizTable(){
             //this is so that another class cannot create an object of this class
             //as it is just a final variable class.

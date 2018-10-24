@@ -27,7 +27,7 @@ import java.util.List;
 import com.student.shakirislam.quizapp.ResultsActivity.*;
 
 public class QuizActivity extends AppCompatActivity {
-    private static final String TAG = QuizActivity.class.getSimpleName();
+    private static final String TAG = "QuizActivity";
     private TextView textQuestion;
     private TextView textScore;
     private TextView textQuestionCount;
@@ -151,6 +151,10 @@ public class QuizActivity extends AppCompatActivity {
             rb2.setPaintFlags(0);
             rb3.setPaintFlags(0);
             rb4.setPaintFlags(0);
+            rb1.setTypeface(null,Typeface.NORMAL);
+            rb2.setTypeface(null,Typeface.NORMAL);
+            rb3.setTypeface(null,Typeface.NORMAL);
+            rb4.setTypeface(null,Typeface.NORMAL);
 
             //this allows the questions to start at '1'
             questionCount++;
@@ -207,12 +211,12 @@ public class QuizActivity extends AppCompatActivity {
         rb3.setTextColor(Color.RED);
         rb4.setTextColor(Color.RED);
 
-        //Underlines the correct answer
+        //Underlines and bolds the correct answer
         switch (currentQuestion.getAnswerNum()){
-            case 1: rb1.setTextColor(Color.BLACK); rb1.setPaintFlags(rb1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);   break;
-            case 2: rb2.setTextColor(Color.BLACK); rb2.setPaintFlags(rb2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);break;
-            case 3: rb3.setTextColor(Color.BLACK); rb3.setPaintFlags(rb3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);break;
-            case 4: rb4.setTextColor(Color.BLACK); rb4.setPaintFlags(rb4.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);break;
+            case 1: rb1.setTextColor(Color.BLACK); rb1.setPaintFlags(rb1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG); rb1.setTypeface(null, Typeface.BOLD);break;
+            case 2: rb2.setTextColor(Color.BLACK); rb2.setPaintFlags(rb2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG); rb2.setTypeface(null, Typeface.BOLD);break;
+            case 3: rb3.setTextColor(Color.BLACK); rb3.setPaintFlags(rb3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG); rb3.setTypeface(null, Typeface.BOLD);break;
+            case 4: rb4.setTextColor(Color.BLACK); rb4.setPaintFlags(rb4.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG); rb4.setTypeface(null, Typeface.BOLD);break;
 
         }
         //Quiz continues
@@ -259,7 +263,15 @@ public class QuizActivity extends AppCompatActivity {
         youtubeSymbol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Saves the state of the Quiz
+
+
                 //Take to the Youtube Page.
+
+                //Sets video ID for next page
+                YoutubePlayerCustomActivity.youtubeVidID = currentQuestion.getYoutube();
+                Intent intent = new Intent(QuizActivity.this,YoutubePlayerCustomActivity.class);
+                startActivity(intent);
             }
         });
 

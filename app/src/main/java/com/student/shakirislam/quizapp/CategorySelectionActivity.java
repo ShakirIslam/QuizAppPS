@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CategorySelectionActivity extends AppCompatActivity {
-
+    private static final String TAG = "CategorySelectionActivi";
     private TextView textChoose;
     private Button button1,button2,button3,button4;
-    private ImageView home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +25,6 @@ public class CategorySelectionActivity extends AppCompatActivity {
         textChoose.setText("choose a topic");
 
 
-        //Home Button
-        home = (ImageView) findViewById(R.id.imageViewHome);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             home();
-            }
-        });
 
 
         //Button 1 (Agile Scrum)
@@ -92,10 +84,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
     startActivity(intent);
     }
 
-    private void home(){
-        Intent intent = new Intent(this,HomeActivity.class);
-        startActivity(intent);
-    }
+
 
 
 }

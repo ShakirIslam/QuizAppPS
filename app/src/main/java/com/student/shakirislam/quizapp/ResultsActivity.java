@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResultsActivity extends AppCompatActivity {
-    private static final String TAG = ResultsActivity.class.getSimpleName();
+    private static final String TAG = "ResultsActivity";
     private TextView resultTitle;
     float[] score;
     private String status [] = {"Correct", "Incorrect"};

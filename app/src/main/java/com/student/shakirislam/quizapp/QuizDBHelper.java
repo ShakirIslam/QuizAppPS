@@ -14,12 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizDBHelper extends SQLiteOpenHelper {
+    private static final String TAG = "QuizDBHelper";
+
 
     private static final String DATABASE_NAME = "Quiz_DB.db";
     private static final int DB_VERSION = 1;
-
     private SQLiteDatabase db;
-    private static final String TAG = QuizDBHelper.class.getSimpleName();
+
 
     public QuizDBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DB_VERSION);
@@ -73,11 +74,12 @@ public class QuizDBHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuizQuestionsTable(){
+        Log.d(TAG, "fillQuizQuestionsTable: Questions are being generated");
         //Agile Q's
         Question q1 = new Question("Which of the following is not a type of Agile approach?","Scrum","Extreme Programming (XP)","Design Thinking ","Kanban",3,"Agile Scrum, XP and Kanban are all frameworks that fall under the Agile method, classified as a progressive approach, whereas Design Thinking is an avant-garde approach to project development.", "Agile", "Agile_software_development", "Agile_software_development#Agile_software_development_methods", "7Xj0KuucEj8");
         addQuestion(q1);
 
-        Question q2 = new Question("Which of the following is the product owner responsible for?","Responsible for the profitability of the product","Accept or reject work results","Decide on sprint start date and content ","Host daily scrum stand ups",4,"The product owner is responsible for deciding on the sprint date, content, the profitability of the product and also approves or rejects work completed during the sprint. The scrum master on the other hand, is responsible for hosting daily standups. ", "Agile", "Scrum_(software_development)#Product_owner", "Scrum_(software_development)#Product_owner", "3eljozEWpf8");
+        Question q2 = new Question("Which of the following is the product owner not responsible for?","Responsible for the profitability of the product","Accept or reject work results","Decide on sprint start date and content ","Host daily scrum stand ups",4,"The product owner is responsible for deciding on the sprint date, content, the profitability of the product and also approves or rejects work completed during the sprint. The scrum master on the other hand, is responsible for hosting daily standups. ", "Agile", "Scrum_(software_development)#Product_owner", "Scrum_(software_development)#Product_owner", "3eljozEWpf8");
         addQuestion(q2);
 
         Question q3 = new Question("Scrum is an agile process that allows us to focus on delivering the highest business value in the <blank> ","Largest time ","Shortest time","Best Time","Worst Time",2,"Scum is based on three main ideas of transparency, inspection and adaptation, with the main of delivering the hightest business value in the shortest amount of time. ", "Agile", "Scrum_(software_development)", "Scrum_(software_development)", "9TycLR0TqFA");
@@ -170,6 +172,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
     }
 
     private void addQuestion(Question question){
+        Log.d(TAG, "addQuestion: Inserting into the db");
         ContentValues contentValues = new ContentValues();
         contentValues.put(QuizTable.COLUMN_QUESTION, question.getQuestion());
         contentValues.put(QuizTable.COLUMN_OPTION1, question.getOpt1());
@@ -188,34 +191,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         db.insert(QuizTable.TABLE_NAME, null, contentValues);
 
     }
-
-//    public List<Question> getAllQuestions(){
-//        //Method to return all retrieve all the questions inputted into the DB.
-//        //This is creating a list of all the question objects and putting it into an array.
-//        List<Question> listQuestion = new ArrayList<>();
-//        //This will do the onCreate command
-//        db = getReadableDatabase();
-//        //runs on the onCreate method of the db and puts it in a readable state [we are retrieving data]
-//        Cursor cursor = db.rawQuery("SELECT * FROM " + QuizTable.TABLE_NAME, null);
-//
-//        if (cursor.moveToFirst()){
-//            //checking if there are returned entries
-//            do {
-//                Question question = new Question();
-//                question.setQuestion(cursor.getString(cursor.getColumnIndex(QuizTable.COLUMN_QUESTION)));
-//                question.setOpt1(cursor.getString(cursor.getColumnIndex(QuizTable.COLUMN_OPTION1)));
-//                question.setOpt2(cursor.getString(cursor.getColumnIndex(QuizTable.COLUMN_OPTION2)));
-//                question.setOpt3(cursor.getString(cursor.getColumnIndex(QuizTable.COLUMN_OPTION3)));
-//                question.setOpt4(cursor.getString(cursor.getColumnIndex(QuizTable.COLUMN_OPTION4)));
-//                question.setAnswerNum(cursor.getInt(cursor.getColumnIndex(QuizTable.COLUMN_ANSWER_NUMBER)));
-//                question.setFeedback(cursor.getString(cursor.getColumnIndex(QuizTable.COLUMN_FEEDBACK)));
-//                listQuestion.add(question);
-//            }while(cursor.moveToNext());
-//        }
-//        cursor.close();
-//        return listQuestion;
-//
-//    }
+    
 
 
     //Following method is to get specific category of questions

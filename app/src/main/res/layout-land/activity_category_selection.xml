@@ -23,18 +23,13 @@
         android:layout_below="@+id/text_choose"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/rounded_button"
         android:text="button"
         android:textAllCaps="true"
-        android:textSize="18sp"
-        />
-
-
-
-
+        android:textSize="18sp" />
 
 
     <Button
@@ -45,12 +40,13 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         android:background="@drawable/rounded_button"
         android:text="button"
         android:textAllCaps="true"
         android:textSize="18sp" />
+
     <Button
         android:id="@+id/button_3"
         android:layout_width="176dp"
@@ -58,8 +54,8 @@
         android:layout_below="@+id/text_choose"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
         android:layout_marginTop="127dp"
         android:background="@drawable/rounded_button"
         android:text="button"
@@ -73,9 +69,9 @@
         android:layout_below="@+id/text_choose"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="127dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="19dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         android:background="@drawable/rounded_button"
         android:text="button"
         android:textAllCaps="true"
@@ -85,7 +81,6 @@
         android:id="@+id/text_choose"
         android:layout_width="match_parent"
         android:layout_height="60sp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="92dp"
         android:background="@color/boxColor"
@@ -95,14 +90,6 @@
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="25sp" />
-
-    <ImageView
-        android:id="@+id/imageViewHome"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignLeft="@id/imageViewHome"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/home" />
 
 
 </RelativeLayout>

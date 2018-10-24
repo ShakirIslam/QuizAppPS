@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".YoutubePlayerCustomActivity">
+
+    <view
+        android:id="@+id/view_youtube"
+        class="com.google.android.youtube.player.YouTubePlayerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="85dp" />
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="308dp"
+        android:layout_height="74dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="89dp"
+        android:background="@drawable/rounded_button"
+        android:text="Return to Quiz"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/redgradient"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradient_red" />
+
+    <TextView
+        android:id="@+id/greybackground"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:background="@color/greybackground" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="208dp"
+        android:layout_height="86dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/youtube_long_logo" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="326dp"
+        android:layout_height="44dp"
+        android:layout_alignStart="@+id/button_back"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/logowhite" />
+
+</RelativeLayout>
