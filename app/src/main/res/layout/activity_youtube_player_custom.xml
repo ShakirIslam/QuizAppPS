@@ -34,16 +34,8 @@
 
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/gradient_red" />
-
-    <TextView
-        android:id="@+id/greybackground"
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:background="@color/greybackground" />
+        android:background="@drawable/gradient_red"
+        android:layout_alignParentLeft="true" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -61,6 +53,7 @@
         android:layout_alignStart="@+id/button_back"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="12dp"
-        android:src="@drawable/logowhite" />
+        android:src="@drawable/logowhite"
+        android:layout_alignLeft="@+id/button_back" />
 
 </RelativeLayout>

@@ -57,6 +57,7 @@ public class QuizActivity extends AppCompatActivity {
     private int questionCount;
     private int questionCountTotal;
     private Question currentQuestion;
+    private ImageView cancelButton;
 
     private int score;
     private boolean answered;
@@ -80,6 +81,7 @@ public class QuizActivity extends AppCompatActivity {
         buttonSubmit = (Button) findViewById(R.id.button_submit);
         buttonFeedback =(Button) findViewById(R.id.button_feedback);
         timerProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        cancelButton = (ImageView) findViewById(R.id.imageCancelButton);
 
 
 
@@ -138,6 +140,14 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showFeedback();
+            }
+        });
+
+        //Quit Quiz Button
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 

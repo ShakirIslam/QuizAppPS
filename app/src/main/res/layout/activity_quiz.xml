@@ -147,14 +147,13 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="224dp"
-        android:layout_height="45dp"
+        android:id="@+id/imageCancelButton"
+        android:layout_width="77dp"
+        android:layout_height="51dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-
-        android:layout_marginBottom="10dp"
-        app:srcCompat="@drawable/logowhite" />
+        android:layout_marginBottom="13dp"
+        app:srcCompat="@drawable/buttoncross" />
 
 
 </RelativeLayout>

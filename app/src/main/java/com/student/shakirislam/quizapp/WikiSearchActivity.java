@@ -42,7 +42,7 @@ public class WikiSearchActivity extends AppCompatActivity {
         button_return = (Button) findViewById(R.id.button_back);
         button_detail = (Button) findViewById(R.id.button_details);
         text_wiki_sum = (TextView) findViewById(R.id.text_wiki_summary);
-        text_wiki_sum.setText("");
+        text_wiki_sum.setText("Loading....");
         getWikiPage(wiki_link);
 
         button_return.setOnClickListener(new View.OnClickListener() {

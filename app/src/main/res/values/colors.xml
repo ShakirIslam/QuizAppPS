@@ -5,7 +5,7 @@
     <color name="colorAccent">#0B05BF</color>
     <color name="colorBackground">#B1D9E7</color>
     <color name="boxColor">#E8EAF6</color>
-    <color name="gradient_start">#635F5F</color>
+    <color name="gradient_start">@android:color/white</color>
     <color name="gradient_end">#BA090F</color>
     <color name="greybackground">#656568</color>
     <color name="gradient_blue_raw">#6da2db</color>
