@@ -24,7 +24,8 @@
         <activity android:name=".YoutubePlayerCustomActivity" />
         <activity android:name=".WikiSearchActivity" />
         <activity android:name=".ScoreTrendActivity" />
-        <activity android:name=".ScoreTrendCategory"></activity>
+        <activity android:name=".ScoreTrendCategory" />
+        <activity android:name=".HomeScreenActivity"></activity>
     </application>
 
 </manifest>

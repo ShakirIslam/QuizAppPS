@@ -61,6 +61,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private int score;
     private boolean answered;
+    private static int categoryNumber;
 
 
 
@@ -94,7 +95,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
         //Extracting the category number to indicate what type of topic is desired
-        int categoryNumber = getIntent().getExtras().getInt("Type");
+        categoryNumber = getIntent().getExtras().getInt("Type");
         //Array of the Quesiton class which gets filled with the desired category of quesitons
         listQuestion = dbHelper.getCategoryQuestions(categoryNumber);
 
@@ -434,5 +435,9 @@ public class QuizActivity extends AppCompatActivity {
         if(countDownTimer != null){
             countDownTimer.cancel();
         }
+    }
+
+    public static int getCategoryNumber() {
+        return categoryNumber;
     }
 }

@@ -30,6 +30,7 @@ public class ResultsActivity extends AppCompatActivity {
     private String status [] = {"Correct", "Incorrect"};
     private Button homeButton;
     private String questionCategory;
+    QuizDBHelper dbHelper;
 
     //ArrayList to hold scores
 
@@ -37,6 +38,9 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: has begun");
+
+        //Database instance
+        // dbHelper = new QuizDBHelper(this);
 
 
         //Designing Title and Button
@@ -63,7 +67,7 @@ public class ResultsActivity extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveData();
+                sendResultToDB();
                 Intent intent = new Intent(ResultsActivity.this,CategorySelectionActivity.class);
                 startActivity(intent);
             }
@@ -117,14 +121,13 @@ public class ResultsActivity extends AppCompatActivity {
 //        score[1] = (float) 2;
     }
 
-
-    private void saveData() {
-        //Method for adding score to the score list
-
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        //String json = gson.
+    public void sendResultToDB(){
+        dbHelper = new QuizDBHelper(this);
+        dbHelper.addResult(QuizActivity.getCategoryNumber(),getIntent().getExtras().getInt("Correct"));
     }
+
+
+
+
 
 }

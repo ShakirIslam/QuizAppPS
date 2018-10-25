@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.student.shakirislam.quizapp.QuizDBVariableContract.*;
+import com.student.shakirislam.quizapp.ResultsDBVariableContract.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 private static final String DATABASE_NAME = "Quiz_DB.db";
     private static final int DB_VERSION = 1;
     private SQLiteDatabase db;
+
+
 
 
     public QuizDBHelper(@Nullable Context context) {
@@ -34,7 +37,7 @@ private static final String DATABASE_NAME = "Quiz_DB.db";
         //Refers to instance of db
         this.db = db;
 
-        //String of Query that table layout
+        //String of Query that creates question table layout
         final String SQL_CREATE_QUESTION_INFO_TABLE = "CREATE TABLE " +
                 QuizTable.TABLE_NAME + " (" +
                 QuizTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -51,10 +54,20 @@ private static final String DATABASE_NAME = "Quiz_DB.db";
                 QuizTable.COLUMN_YOUTUBE + " TEXT" +
                 ")";
 
-        //Executes the String above
+        //String of Query that creates results table layout
+        final String SQL_CREATE_RESULT_INFO_TABLE = "CREATE TABLE " +
+                ResultTable.TABLE_NAME + " (" +
+                ResultTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ResultTable.COLUMN_CATEGORY + " TEXT, " +
+                ResultTable.COLUMN_SCORE + " INTEGER" +
+                ")";
+
+        //Executes the Question Table formation Creation
         db.execSQL(SQL_CREATE_QUESTION_INFO_TABLE);
         //Method to increase the empty table with content
         fillQuizQuestionsTable();
+        //Executes the Results Table Formation Creation
+        db.execSQL(SQL_CREATE_RESULT_INFO_TABLE);
 
 
     }
@@ -63,6 +76,7 @@ private static final String DATABASE_NAME = "Quiz_DB.db";
     public void onUpgrade(SQLiteDatabase db, int old, int newVersion) {
         //use to update to change db
         db.execSQL("DROP TABLE IF EXISTS " + QuizTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ResultTable.TABLE_NAME);
         onCreate(db);
     }
 
@@ -243,6 +257,69 @@ private static final String DATABASE_NAME = "Quiz_DB.db";
 
 
     }
+
+    public void addResult(int category, int score){
+        db = getReadableDatabase();
+        //Storing result and category in the DB
+        ContentValues contentValues = new ContentValues();
+
+        String cat1 = "Agile";
+        String cat2 = "Lean";
+        String cat3 = "Design";
+        String cat4 = "All Topics";
+
+        switch (category){
+            case 1:  contentValues.put(ResultTable.COLUMN_CATEGORY, cat1); break;
+
+            case 2:  contentValues.put(ResultTable.COLUMN_CATEGORY, cat2); break;
+
+            case 3:  contentValues.put(ResultTable.COLUMN_CATEGORY, cat3); break;
+
+            case 4:  contentValues.put(ResultTable.COLUMN_CATEGORY, cat4); break;
+        }
+
+        contentValues.put(ResultTable.COLUMN_SCORE,score);
+
+        //Inserting into the db
+        db.insert(ResultTable.TABLE_NAME, null, contentValues);
+
+    }
+
+    public ArrayList<Float> getResult(int category){
+
+        ArrayList<Float> resultList = new ArrayList<>();
+        db = getReadableDatabase();
+        Cursor cursor = null;
+
+        String cat1 = "Agile";
+        String cat2 = "Lean";
+        String cat3 = "Design";
+        String cat4 = "All Topics";
+
+        int temp = 0;
+
+        switch(category){
+            case 1:  cursor = db.rawQuery("SELECT * FROM " + ResultTable.TABLE_NAME +
+                    " WHERE " + ResultTable.COLUMN_CATEGORY + " = ?", new String[] {cat1}); break;
+
+            case 2:  cursor = db.rawQuery("SELECT * FROM " + ResultTable.TABLE_NAME +
+                    " WHERE " + ResultTable.COLUMN_CATEGORY + " = ?", new String[] {cat2}); break;
+
+            case 3:  cursor = db.rawQuery("SELECT * FROM " + ResultTable.TABLE_NAME +
+                    " WHERE " + ResultTable.COLUMN_CATEGORY + " = ?", new String[] {cat3}); break;
+
+            case 4:  cursor = db.rawQuery("SELECT * FROM " + ResultTable.TABLE_NAME +
+                    " WHERE " + ResultTable.COLUMN_CATEGORY + " = ?", new String[] {cat4}); break;
+        }
+        if (cursor.moveToFirst()){
+            do {
+                resultList.add(cursor.getFloat(cursor.getColumnIndex(ResultTable.COLUMN_SCORE)));
+            }while(cursor.moveToNext());
+        }
+        return resultList;
+    }
+
+
 
 
 }

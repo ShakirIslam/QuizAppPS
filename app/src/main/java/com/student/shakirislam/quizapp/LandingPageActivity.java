@@ -46,7 +46,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
     private void categorySelect(){
     //This method is to begin the CategorySelectionActivity class
-        Intent intent = new Intent(LandingPageActivity.this, CategorySelectionActivity.class );
+        Intent intent = new Intent(LandingPageActivity.this, HomeScreenActivity.class );
         startActivity(intent);
     }
 }

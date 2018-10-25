@@ -1,9 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScoreTrendCategory">
+    tools:context=".ScoreTrendCategory"
+    android:background="@color/colorBackground">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/back_button2"
+        android:layout_width="70dp"
+        android:layout_height="68dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="0dp"
+        app:srcCompat="@drawable/backbutton" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="229dp"
+        android:layout_height="77dp"
+
+        android:layout_marginTop="40dp"
+
+        app:srcCompat="@drawable/logo"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/button_1"
+        android:layout_width="176dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/text_trend"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_button"
+        android:text="button"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        tools:text="agile scrum" />
+
+
+    <Button
+        android:id="@+id/button_2"
+        android:layout_width="176dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/text_trend"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rounded_button"
+        android:text="button"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        tools:text="lean startup" />
+
+    <Button
+        android:id="@+id/button_3"
+        android:layout_width="176dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/text_trend"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="127dp"
+        android:background="@drawable/rounded_button"
+        android:text="button"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        tools:text="design thinking" />
+
+    <Button
+        android:id="@+id/button_4"
+        android:layout_width="176dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/text_trend"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="19dp"
+        android:background="@drawable/rounded_button"
+        android:text="button"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        tools:text="all topics" />
+
+    <TextView
+        android:id="@+id/text_trend"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="169dp"
+        android:background="@color/boxColor"
+        android:text="View Quiz Score Trends"
+        android:textAlignment="center"
+        android:letterSpacing="0.5"
+        android:textSize="25sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"/>
+
+</RelativeLayout>

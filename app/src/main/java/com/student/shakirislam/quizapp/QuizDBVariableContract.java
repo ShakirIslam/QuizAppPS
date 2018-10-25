@@ -29,6 +29,7 @@ public class QuizDBVariableContract {
         public static final String COLUMN_YOUTUBE = "youtube";
 
         //Need this specific interface (BaseColumns), because certain android classes require with the naming convention "_id"
+        //Variables use in QuizDBHelper class
 
 
 

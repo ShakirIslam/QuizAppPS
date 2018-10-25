@@ -14,6 +14,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
     private TextView textChoose;
     private Button button1,button2,button3,button4;
     private Button testButton;
+    private ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category_selection);
 
         //Configuring title
-        textChoose = (TextView) findViewById(R.id.text_choose);
+        textChoose = (TextView) findViewById(R.id.text_trend);
         Typeface HelveticaNeue =Typeface.createFromAsset(getAssets(),"fonts/HelveticaNeue.ttf");
         textChoose.setTypeface(HelveticaNeue);
         textChoose.setText("choose a topic");
@@ -71,6 +72,16 @@ public class CategorySelectionActivity extends AppCompatActivity {
                 selection(4);
             }
         });
+
+        //Back Button
+        backButton = (ImageView) findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
 
 
         //Button for testing activities

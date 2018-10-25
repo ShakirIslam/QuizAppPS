@@ -1,7 +1,9 @@
 package com.student.shakirislam.quizapp;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -10,12 +12,30 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class ScoreTrendActivity extends AppCompatActivity{
+public class ScoreTrendActivity extends AppCompatActivity {
+
+    //WORK IN PROGRESS, CURRENT STATUS NON FUNCTIONAL
 
     private static final String TAG = "ScoreTrendActivity";
+    private static ArrayList<Float> agileScore;
+    private static ArrayList<Float> leanScore;
+    private static ArrayList<Float> designScore;
+    private static ArrayList<Float> allTopicScore;
+    private static ArrayList<Float> resultStream;
+
+
+    private static final int AGILE = 1;
+    private static final int LEAN = 2;
+    private static final int DESIGN = 3;
+    private static final int ALL_TOPICS = 4;
+
+
     private LineChart mChart;
 
     @Override
@@ -25,38 +45,50 @@ public class ScoreTrendActivity extends AppCompatActivity{
 
         mChart = (LineChart) findViewById(R.id.line_chart);
 
-//        mChart.setOnChartGestureListener(ScoreTrendActivity.this);
-//        mChart.setOnChartValueSelectedListener(ScoreTrendActivity.this);
+        //Testing Bay
+//        ArrayList<Float> tester = new ArrayList<>();
+//        Log.d(TAG, "onCreate: The size of newly created float " + tester.size());
+
+        //Testing Bay
+
+        //Creating instance of the DB helper class
+        QuizDBHelper dbHelper = new QuizDBHelper(this);
+
+        //Agile = 1, Lean = 2, Design = 3 & All Topics = 4
+        resultStream = dbHelper.getResult(getIntent().getExtras().getInt("Type"));
 
 
         ArrayList<Entry> yValues = new ArrayList<>();
 
-        //Array
 
-        yValues.add(new Entry(0,60f));
-        yValues.add(new Entry(1,50f));
-        yValues.add(new Entry(2,70f));
-        yValues.add(new Entry(3,20f));
-        yValues.add(new Entry(4,70f));
-        yValues.add(new Entry(5,10f));
+        if(resultStream.size() == 0){
+            Log.d(TAG, "onCreate: The Size of the resultStream is 0");
+        }
 
-
-        //Inputing the entry values into the dataset
-        LineDataSet set1 = new LineDataSet(yValues, "Data Set 1");
-
-        set1.setFillAlpha(110);
+        if(resultStream.size() != 0) {
+            for (int i = 0; i < resultStream.size(); i++) {
+                yValues.add(new Entry(i, resultStream.get(i)));
+            }
 
 
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(set1);
+            //Inputing the entry values into the dataset
+            LineDataSet set1 = new LineDataSet(yValues, "Data Set 1");
 
-        LineData data = new LineData(dataSets);
-
-        mChart.setData(data);
-        mChart.animateX(2000);
+            set1.setFillAlpha(110);
 
 
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(set1);
 
+            LineData data = new LineData(dataSets);
+
+            mChart.setData(data);
+            mChart.animateX(2000);
+        }
 
     }
+
+
+
+
 }
