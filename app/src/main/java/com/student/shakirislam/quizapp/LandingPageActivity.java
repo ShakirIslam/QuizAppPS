@@ -19,9 +19,7 @@ public class LandingPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
 
-
-
-        //Following sets up design of front page
+        //Configures design of Landing Page
         title = (TextView) findViewById(R.id.text_title);
         Typeface tahoma =Typeface.createFromAsset(getAssets(),"fonts/tahoma.ttf");
         title.setTypeface(tahoma);
@@ -35,7 +33,7 @@ public class LandingPageActivity extends AppCompatActivity {
         startButton.setTypeface(HelveticaNeue);
         startButton.setText("get started");
 
-        //handler for the button
+        //Handler for 'start' button
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +45,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
 
     private void categorySelect(){
-    //This method is to begin the category select class
+    //This method is to begin the CategorySelectionActivity class
         Intent intent = new Intent(LandingPageActivity.this, CategorySelectionActivity.class );
         startActivity(intent);
     }

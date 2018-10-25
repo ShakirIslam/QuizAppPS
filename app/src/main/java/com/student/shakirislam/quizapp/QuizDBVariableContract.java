@@ -3,17 +3,17 @@ package com.student.shakirislam.quizapp;
 import android.provider.BaseColumns;
 
 public class QuizDBVariableContract {
-
+    //Class outlining column names
 
     public static class QuizTable implements BaseColumns {
         private static final String TAG = "QuizTable";
         private QuizTable(){
             //this is so that another class cannot create an object of this class
             //as it is just a final variable class.
-            //Good coding procedure.
+            //'Good coding procedure.'
         }
 
-        //List out the column names here
+        //Listing out column names of db table
         //Note, these are just variables, not actual tables yet. Look in QuizDBHelper to create columns
         public static final String TABLE_NAME = "question_info";
         public static final String COLUMN_QUESTION = "question";
@@ -28,7 +28,7 @@ public class QuizDBVariableContract {
         public static final String COLUMN_WIKI_LINK = "wiki_link";
         public static final String COLUMN_YOUTUBE = "youtube";
 
-        //Need this specific method, because certain android classes require with the naming convention "_id"
+        //Need this specific interface (BaseColumns), because certain android classes require with the naming convention "_id"
 
 
 

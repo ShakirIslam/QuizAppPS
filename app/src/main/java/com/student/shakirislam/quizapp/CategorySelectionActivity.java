@@ -13,21 +13,20 @@ public class CategorySelectionActivity extends AppCompatActivity {
     private static final String TAG = "CategorySelectionActivi";
     private TextView textChoose;
     private Button button1,button2,button3,button4;
+    private Button testButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_selection);
 
+        //Configuring title
         textChoose = (TextView) findViewById(R.id.text_choose);
         Typeface HelveticaNeue =Typeface.createFromAsset(getAssets(),"fonts/HelveticaNeue.ttf");
         textChoose.setTypeface(HelveticaNeue);
         textChoose.setText("choose a topic");
 
-
-
-
-        //Button 1 (Agile Scrum)
+        //Configuring Button 1 (Agile Scrum)
         button1 = (Button) findViewById(R.id.button_1);
         button1.setText("agile scrum");
         button1.setTypeface(HelveticaNeue);
@@ -38,8 +37,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
             }
         });
 
-
-        //Button 2 (Lean Startup)
+        //Configuring Button 2 (Lean Startup)
         button2 = (Button) findViewById(R.id.button_2);
         button2.setText("lean startup");
         button2.setTypeface(HelveticaNeue);
@@ -51,7 +49,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
         });
 
 
-        //Button 3 (Design Thinking)
+        //Configuring Button 3 (Design Thinking)
         button3 = (Button) findViewById(R.id.button_3);
         button3.setText("design thinking");
         button3.setTypeface(HelveticaNeue);
@@ -63,7 +61,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
         });
 
 
-        //Button 4 (All Topics)
+        //Configuring Button 4 (All Topics)
         button4 = (Button) findViewById(R.id.button_4);
         button4.setText("all topics");
         button4.setTypeface(HelveticaNeue);
@@ -75,10 +73,27 @@ public class CategorySelectionActivity extends AppCompatActivity {
         });
 
 
+        //Button for testing activities
+        testButton = (Button) findViewById(R.id.button_test);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CategorySelectionActivity.this,ScoreTrendActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 
     private void selection(int selectionNumber){
+        //Lets the next class (Quiz Activity) know what button was selected
+        //Agile passes 1
+        //Lean passes 2
+        //Design passes 3
+        //All Topics passes 4
+
     Intent intent = new Intent(CategorySelectionActivity.this,QuizActivity.class);
     intent.putExtra("Type",selectionNumber);
     startActivity(intent);

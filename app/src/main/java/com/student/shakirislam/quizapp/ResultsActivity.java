@@ -1,6 +1,7 @@
 package com.student.shakirislam.quizapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -15,16 +16,22 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResultsActivity extends AppCompatActivity {
+    //Class for configuring the results page after a quiz
+
     private static final String TAG = "ResultsActivity";
     private TextView resultTitle;
     float[] score;
     private String status [] = {"Correct", "Incorrect"};
     private Button homeButton;
+    private String questionCategory;
+
+    //ArrayList to hold scores
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         homeButton = (Button) findViewById(R.id.button_home);
 
-        //Producing percentage value
+        //Producing percentage value of score
         String percentString = getIntent().getExtras().getString("Percentage");
         Log.d(TAG, "onCreate: Percentage value directly from intent" + percentString);
         percentString += "%";
@@ -52,15 +59,18 @@ public class ResultsActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Printing value of percentString " + percentString);
 
-        //Button handler
+        //Handling home button click
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                saveData();
                 Intent intent = new Intent(ResultsActivity.this,CategorySelectionActivity.class);
                 startActivity(intent);
             }
         });
     }
+
+
 
     private void setupChart() {
         //Creating a list of piechart entries
@@ -87,18 +97,34 @@ public class ResultsActivity extends AppCompatActivity {
         chart.setHoleRadius(30f);
         chart.setTransparentCircleRadius(35f);
 
-        //Causes to redraw.
+        //Causes to redraw chart
         chart.invalidate();
     }
 
     public void setScore(){
+        //Extracting the intents sent from the QuizActivity class
+        //correctNum = # of Questions answered correctly
+        //wrongNum = # of Questions answered incorrectly
             float correctNum = (float) getIntent().getExtras().getInt("Correct");
             float wrongNum = (float) getIntent().getExtras().getInt("Wrong");
 
+
+        //Adding above values into float array (used for pie chart)
         score[0] = correctNum;
         score[1] = wrongNum;
 
 //        score[0] = (float) 1;
 //        score[1] = (float) 2;
     }
+
+
+    private void saveData() {
+        //Method for adding score to the score list
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        //String json = gson.
+    }
+
 }

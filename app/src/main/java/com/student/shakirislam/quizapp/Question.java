@@ -1,6 +1,9 @@
 package com.student.shakirislam.quizapp;
 
 public class Question {
+
+    //Class to create Quesiton Objects
+
     private static final String TAG = "Question";
     private String question;
     private String opt1;
@@ -30,7 +33,10 @@ public class Question {
         this.wiki_intro = wiki_intro;
         this.wiki_link = wiki_link;
         this.youtube = youtube;
+
     }
+
+    //Getters and setters for Question Attributes
 
     public String getWiki_intro() {
         return wiki_intro;

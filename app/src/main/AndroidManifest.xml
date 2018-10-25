@@ -22,7 +22,9 @@
         <activity android:name=".QuizActivity" />
         <activity android:name=".ResultsActivity" />
         <activity android:name=".YoutubePlayerCustomActivity" />
-        <activity android:name=".WikiSearchActivity"></activity>
+        <activity android:name=".WikiSearchActivity" />
+        <activity android:name=".ScoreTrendActivity" />
+        <activity android:name=".ScoreTrendCategory"></activity>
     </application>
 
 </manifest>

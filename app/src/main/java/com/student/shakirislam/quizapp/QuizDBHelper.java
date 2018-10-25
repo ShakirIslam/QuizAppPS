@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizDBHelper extends SQLiteOpenHelper {
+    //Class to manage DB (Creating and Querying)
+
     private static final String TAG = "QuizDBHelper";
-
-
-    private static final String DATABASE_NAME = "Quiz_DB.db";
+private static final String DATABASE_NAME = "Quiz_DB.db";
     private static final int DB_VERSION = 1;
     private SQLiteDatabase db;
 
@@ -31,9 +31,10 @@ public class QuizDBHelper extends SQLiteOpenHelper {
     //need to create initial database tables here
 
         Log.i(TAG, "onCreate: method has run");
-
+        //Refers to instance of db
         this.db = db;
 
+        //String of Query that table layout
         final String SQL_CREATE_QUESTION_INFO_TABLE = "CREATE TABLE " +
                 QuizTable.TABLE_NAME + " (" +
                 QuizTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -50,7 +51,9 @@ public class QuizDBHelper extends SQLiteOpenHelper {
                 QuizTable.COLUMN_YOUTUBE + " TEXT" +
                 ")";
 
+        //Executes the String above
         db.execSQL(SQL_CREATE_QUESTION_INFO_TABLE);
+        //Method to increase the empty table with content
         fillQuizQuestionsTable();
 
 
@@ -59,21 +62,14 @@ public class QuizDBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int old, int newVersion) {
         //use to update to change db
-
         db.execSQL("DROP TABLE IF EXISTS " + QuizTable.TABLE_NAME);
-        onCreate(db);
-    }
-
-    public void refreshDB(){
-
-        //deletes db and reinserts data.
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS " + QuizTable.TABLE_NAME);
-        System.out.println("Success");
         onCreate(db);
     }
 
     private void fillQuizQuestionsTable(){
+        //Creating a Question Object
+        //Inserting question instance into db through 'addQuestion(Question question)'
+
         Log.d(TAG, "fillQuizQuestionsTable: Questions are being generated");
         //Agile Q's
         Question q1 = new Question("Which of the following is not a type of Agile approach?","Scrum","Extreme Programming (XP)","Design Thinking ","Kanban",3,"Agile Scrum, XP and Kanban are all frameworks that fall under the Agile method, classified as a progressive approach, whereas Design Thinking is an avant-garde approach to project development.", "Agile", "Agile_software_development", "Agile_software_development#Agile_software_development_methods", "7Xj0KuucEj8");
@@ -166,13 +162,12 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         Question q30 = new Question("Which of the following are an aspect of empathy maps?","Pain points and action","Influences and feelings ","Feelings and emotion ","Tasks and feelings",2,"Empathy maps comprise of: tasks, influences, overall goal, painpoints and feelings. ", "Design", "Design_thinking", "Design_thinking#Empathy", "pXtN4y3O35M");
         addQuestion(q30);
 
-//        Question q1 = new Question("","","","","",,"", "", "", "", "");
-//        addQuestion(q1);
 
     }
 
     private void addQuestion(Question question){
         Log.d(TAG, "addQuestion: Inserting into the db");
+        //ContentValues instance created to specify column and data to be inserted
         ContentValues contentValues = new ContentValues();
         contentValues.put(QuizTable.COLUMN_QUESTION, question.getQuestion());
         contentValues.put(QuizTable.COLUMN_OPTION1, question.getOpt1());
@@ -186,7 +181,6 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         contentValues.put(QuizTable.COLUMN_WIKI_LINK, question.getWiki_link());
         contentValues.put(QuizTable.COLUMN_YOUTUBE, question.getYoutube());
 
-        //nullColumnHack is about adding null values in, review this.
         //Inserts question into db
         db.insert(QuizTable.TABLE_NAME, null, contentValues);
 
@@ -194,15 +188,19 @@ public class QuizDBHelper extends SQLiteOpenHelper {
     
 
 
-    //Following method is to get specific category of questions
+
     public List<Question> getCategoryQuestions(int category){
+        //Following method return array of chosen category of questions
 
         List<Question> listQuestion = new ArrayList<>();
+        //Instance of db created, and runes the onCreate() if not done so.
         db = getReadableDatabase();
-        //runs on the onCreate method of the db and puts it in a readable state [we are retrieving data]
 
+        //Cursor to handle query results
         Cursor cursor = null;
 
+
+        //case for each type of category chosen
         //1 = agile, 2 = lean, 3 = design and 4 = all topics
         switch(category){
             case 1:  cursor = db.rawQuery("SELECT * FROM " + QuizTable.TABLE_NAME +
@@ -217,6 +215,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
             case 4:  cursor = db.rawQuery("SELECT * FROM " + QuizTable.TABLE_NAME, null); break;
         }
 
+        //Setting the attributes for the question objects
         if (cursor.moveToFirst()){
             //checking if there are returned entries
             do {
@@ -233,11 +232,13 @@ public class QuizDBHelper extends SQLiteOpenHelper {
                 question.setWiki_link(cursor.getString(cursor.getColumnIndex(QuizTable.COLUMN_WIKI_LINK)));
                 question.setYoutube(cursor.getString(cursor.getColumnIndex(QuizTable.COLUMN_YOUTUBE)));
 
-                //Adding to the array list
+                //Adding the question objects to a question array
                 listQuestion.add(question);
             }while(cursor.moveToNext());
         }
+        //Closing the cursor
         cursor.close();
+        //When this method is called, it will return array of desired questions
         return listQuestion;
 
 
