@@ -3,7 +3,7 @@ package com.student.shakirislam.quizapp;
 public class YoutubeConfig {
     //Class to store the Youtube API
     private static final String TAG = "YoutubeConfig";
-    private static final String API_KEY = "AIzaSyDq1GT8kpcuw265u4AZGLiO0BEQ5jG7Y-4";
+    private static final String API_KEY = "AIzaSyBoAziI5YeDD1hEZbLKJ7WBk1-uWA-3xRM";
 
     public YoutubeConfig() {
     }
