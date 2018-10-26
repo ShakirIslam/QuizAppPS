@@ -27,16 +27,16 @@ Key functionalities:
   - Stored results can be cleared.
   - The stored quiz results (line chart) had the aim of showing a broader degree of feedback, capturing the user's improvement.
   
-UI/UX considerations:
-- Design Principles: 
-    - No UI deadends (User is never stuck at a screen)
-    - Produce consistent and streamline colour pallete
-    - There isn't a reliance on the native back button on mobile device.
-    - Landscape mode is prohibited (portrait best suits the style of the app)
-    - Animations are introduced to prevent a 'static' nature in the UX
-    - Underlying feedback features (dynamic wiki & youtube / animated data infographics) keep user interested and not bored
-    - Degree of randomisation (Questions are randomised such that user does not get bored quickly)
+- UI/UX considerations:
+	- Design Principles: 
+    	- No UI deadends (User is never stuck at a screen)
+    	- Produce consistent and streamline colour pallete
+    	- There isn't a reliance on the native back button on mobile device.
+    	- Landscape mode is prohibited (portrait best suits the style of the app)
+    	- Animations are introduced to prevent a 'static' nature in the UX
+    	- Underlying feedback features (dynamic wiki & youtube / animated data infographics) keep user interested and not bored
+    	- Degree of randomisation (Questions are randomised such that user does not get bored quickly)
     
     
-Created by UNSW students Shakir Islam (z5162633) and Prerita Mehta (z5162933)
+- Created by UNSW students Shakir Islam (z5162633) and Prerita Mehta (z5162933)
 
