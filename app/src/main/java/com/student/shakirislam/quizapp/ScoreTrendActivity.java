@@ -137,7 +137,7 @@ public class ScoreTrendActivity extends AppCompatActivity {
             //Modifying Visual of line
             set1.setFillAlpha(110);
             set1.setLineWidth(5f);
-            set1.setValueTextSize(25f);
+            set1.setValueTextSize(18f);
             set1.setColor(Color.rgb(135, 232, 17));
 
             //Creating and setting the dataset
@@ -154,6 +154,7 @@ public class ScoreTrendActivity extends AppCompatActivity {
 
             //1 Second animation
             mChart.animateX(1000);
+
         }
 
     }
