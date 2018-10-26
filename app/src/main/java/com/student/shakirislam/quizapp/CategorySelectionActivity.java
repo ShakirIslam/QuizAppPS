@@ -13,7 +13,6 @@ public class CategorySelectionActivity extends AppCompatActivity {
     private static final String TAG = "CategorySelectionActivi";
     private TextView textChoose;
     private Button button1,button2,button3,button4;
-    private Button testButton;
     private ImageView backButton;
 
     @Override
@@ -78,21 +77,12 @@ public class CategorySelectionActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-
-
-
-        //Button for testing activities
-        testButton = (Button) findViewById(R.id.button_test);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CategorySelectionActivity.this,ScoreTrendActivity.class);
+                //Takes user to home page
+                Intent intent = new Intent(CategorySelectionActivity.this, HomeScreenActivity.class);
                 startActivity(intent);
             }
         });
+
 
 
 

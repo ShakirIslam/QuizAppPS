@@ -19,16 +19,19 @@ public class LandingPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
 
-        //Configures design of Landing Page
+        //Setting up design of Landing Page
+        //Configures Title text and font
         title = (TextView) findViewById(R.id.text_title);
         Typeface tahoma =Typeface.createFromAsset(getAssets(),"fonts/tahoma.ttf");
         title.setTypeface(tahoma);
 
+        //Configures subtitle text and font
         subtitle = (TextView) findViewById(R.id.text_subtitle);
         Typeface HelveticaNeue =Typeface.createFromAsset(getAssets(),"fonts/HelveticaNeue.ttf");
         subtitle.setTypeface(HelveticaNeue);
         subtitle.setText("test your INFS2603 knowledge now");
 
+        //Configures
         startButton = (Button) findViewById(R.id.button_start);
         startButton.setTypeface(HelveticaNeue);
         startButton.setText("get started");

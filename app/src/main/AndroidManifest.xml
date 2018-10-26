@@ -18,14 +18,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CategorySelectionActivity" />
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".ResultsActivity" />
-        <activity android:name=".YoutubePlayerCustomActivity" />
-        <activity android:name=".WikiSearchActivity" />
-        <activity android:name=".ScoreTrendActivity" />
-        <activity android:name=".ScoreTrendCategory" />
-        <activity android:name=".HomeScreenActivity"></activity>
+        <activity android:name=".CategorySelectionActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".QuizActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ResultsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".YoutubePlayerCustomActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".WikiSearchActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ScoreTrendActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ScoreTrendCategory"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HomeScreenActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+
+        </activity>
+
     </application>
+
+
 
 </manifest>

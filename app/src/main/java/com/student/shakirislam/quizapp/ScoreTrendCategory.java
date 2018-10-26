@@ -12,7 +12,7 @@ import android.widget.ImageView;
 public class ScoreTrendCategory extends AppCompatActivity {
 
     private Button buttonAgile,buttonLean,buttonDesign,buttonAll;
-    private ImageView backButton;
+    private ImageView back_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +22,8 @@ public class ScoreTrendCategory extends AppCompatActivity {
         Typeface HelveticaNeue =Typeface.createFromAsset(getAssets(),"fonts/HelveticaNeue.ttf");
 
         //Setting up back button
-        backButton = (ImageView) findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        back_button = (ImageView) findViewById(R.id.back_button);
+        back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Simulates back button being pressed

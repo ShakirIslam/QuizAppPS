@@ -122,7 +122,10 @@ public class ResultsActivity extends AppCompatActivity {
     }
 
     public void sendResultToDB(){
+        //Storing results in the Results Table in DB
+        //New instance of db
         dbHelper = new QuizDBHelper(this);
+        //Passing results through with the category number
         dbHelper.addResult(QuizActivity.getCategoryNumber(),getIntent().getExtras().getInt("Correct"));
     }
 

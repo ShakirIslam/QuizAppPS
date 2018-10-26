@@ -38,7 +38,8 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textScore;
     private TextView textQuestionCount;
     private TextView textCounter;
-    private static final long COUNTDOWN_MILLIS = 15000;
+    //Timer length set here
+    private static final long COUNTDOWN_MILLIS = 30000;
     private long timeLeftmillis;
     private CountDownTimer countDownTimer;
     private RadioGroup rbGroup;
@@ -438,6 +439,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public static int getCategoryNumber() {
+        //getter to get the category number selected
         return categoryNumber;
     }
 }

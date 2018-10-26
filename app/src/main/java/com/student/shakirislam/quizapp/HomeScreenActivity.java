@@ -29,6 +29,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         buttonQuiz.setText("Quiz");
         buttonTrend.setText("Results");
 
+        //Setting the font for the quiz and trend button
         Typeface HelveticaNeue =Typeface.createFromAsset(getAssets(),"fonts/HelveticaNeue.ttf");
         buttonQuiz.setTypeface(HelveticaNeue);
         buttonTrend.setTypeface(HelveticaNeue);
@@ -47,7 +48,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Intent to enter the Results Trend Category Selection
-                Intent intent = new Intent(HomeScreenActivity.this,ScoreTrendActivity.class);
+                Intent intent = new Intent(HomeScreenActivity.this,ScoreTrendCategory.class);
                 startActivity(intent);
             }
         });

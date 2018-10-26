@@ -259,15 +259,20 @@ private static final String DATABASE_NAME = "Quiz_DB.db";
     }
 
     public void addResult(int category, int score){
+        //Method for adding results into db
+        //Allows database to be editable
         db = getReadableDatabase();
         //Storing result and category in the DB
         ContentValues contentValues = new ContentValues();
 
+
+        //Categories
         String cat1 = "Agile";
         String cat2 = "Lean";
         String cat3 = "Design";
         String cat4 = "All Topics";
 
+        //Chooses category
         switch (category){
             case 1:  contentValues.put(ResultTable.COLUMN_CATEGORY, cat1); break;
 
@@ -278,26 +283,31 @@ private static final String DATABASE_NAME = "Quiz_DB.db";
             case 4:  contentValues.put(ResultTable.COLUMN_CATEGORY, cat4); break;
         }
 
+        //Adds score with category
         contentValues.put(ResultTable.COLUMN_SCORE,score);
 
-        //Inserting into the db
+        //Inserting score and category into db
         db.insert(ResultTable.TABLE_NAME, null, contentValues);
 
     }
 
     public ArrayList<Float> getResult(int category){
-
+        //Method for return results of a specific category from db
+        //New array to hold results
         ArrayList<Float> resultList = new ArrayList<>();
+        //Editable db
         db = getReadableDatabase();
+        //Cursor to hold query results
         Cursor cursor = null;
 
+        //Categories
         String cat1 = "Agile";
         String cat2 = "Lean";
         String cat3 = "Design";
         String cat4 = "All Topics";
 
-        int temp = 0;
 
+        //Case for each category scenario
         switch(category){
             case 1:  cursor = db.rawQuery("SELECT * FROM " + ResultTable.TABLE_NAME +
                     " WHERE " + ResultTable.COLUMN_CATEGORY + " = ?", new String[] {cat1}); break;
@@ -311,12 +321,48 @@ private static final String DATABASE_NAME = "Quiz_DB.db";
             case 4:  cursor = db.rawQuery("SELECT * FROM " + ResultTable.TABLE_NAME +
                     " WHERE " + ResultTable.COLUMN_CATEGORY + " = ?", new String[] {cat4}); break;
         }
+        //If there is a result in the query
         if (cursor.moveToFirst()){
             do {
+                //Adding result into array
                 resultList.add(cursor.getFloat(cursor.getColumnIndex(ResultTable.COLUMN_SCORE)));
             }while(cursor.moveToNext());
         }
+        //Returning array
         return resultList;
+    }
+
+    public void clearResult(int category){
+        //Method for clearing results of a specific category
+        //Editable db
+        db = getReadableDatabase();
+
+
+        //Categories
+        String cat1 = "Agile";
+        String cat2 = "Lean";
+        String cat3 = "Design";
+        String cat4 = "All Topics";
+
+
+        //Deleting in each case
+        switch(category){
+            //DELETE FROM result tables WHERE category matches parameters
+            case 1:  db.execSQL("DELETE FROM " + ResultTable.TABLE_NAME + " WHERE " +
+                    ResultTable.COLUMN_CATEGORY + " =?", new String[] {cat1}); break;
+
+            case 2:  db.execSQL("DELETE FROM " + ResultTable.TABLE_NAME + " WHERE " +
+                    ResultTable.COLUMN_CATEGORY + " =?", new String[] {cat2}); break;
+
+            case 3:  db.execSQL("DELETE FROM " + ResultTable.TABLE_NAME + " WHERE " +
+                    ResultTable.COLUMN_CATEGORY + " =?", new String[] {cat3}); break;
+
+            case 4:  db.execSQL("DELETE FROM " + ResultTable.TABLE_NAME + " WHERE " +
+                    ResultTable.COLUMN_CATEGORY + " =?", new String[] {cat4}); break;
+        }
+
+
+
     }
 
 

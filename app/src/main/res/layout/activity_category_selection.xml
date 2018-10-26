@@ -96,15 +96,6 @@
         android:textColor="@android:color/black"
         android:gravity="center"/>
 
-    <Button
-        android:id="@+id/button_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="43dp"
-        android:text="Button" />
-
     <ImageView
         android:id="@+id/back_button"
         android:layout_width="70dp"
