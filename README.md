@@ -38,5 +38,5 @@ UI/UX considerations:
     - Degree of randomisation (Questions are randomised such that user does not get bored quickly)
     
     
-    Created by UNSW students Shakir Islam (z5162633) and Prerita Mehta (z5162933)
+Created by UNSW students Shakir Islam (z5162633) and Prerita Mehta (z5162933)
 
