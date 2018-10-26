@@ -19,7 +19,7 @@ Key functionalities:
 
 - Results component
 	- At the conclusion of each quiz, an animated pie graph shows 		the users result
-	- After a quiz is completed, the result is stored and can been 	seen through the medium of an animated line chart from 	navigating from home --> Results --> [category selection] --> Line chart of results [chosen category] Stored results can be cleared. The stored quiz results (line 	chart) had the aim of showing a broader degree of feedback, 	capturing the user's improvement. 
+	- After a quiz is completed, the result is stored and can been 	seen through the medium of an animated line chart from 	navigating from home --> Results --> [category selection] --> Line chart of results [chosen category] Stored results can be cleared. The stored quiz results (line 	chart) had the aim of showing a broader degree of feedback, 	capturing the user's improvement. (NOTE a specific category quiz has to be done twice to produce a line) 
 
 - UI/UX considerations: 
 	- Design Principles: 
